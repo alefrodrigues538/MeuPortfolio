@@ -864,10 +864,10 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-$databases['default']['default'] = array (
-  'database' => 'u771243690_MHrEs',
-  'username' => 'u771243690_DqK92',
-  'password' => '9eM9azaMSU',
+$databases['default']['default'] = array(
+  'database' => 'u771243690_drupal10',
+  'username' => 'u771243690_drupal10',
+  'password' => 'xtwo5etaw@A',
   'prefix' => 'kupm_',
   'host' => '127.0.0.1',
   'port' => '3306',
