@@ -1,0 +1,4 @@
+name: portfolio
+recipe: drupal10
+config:
+  webroot: .
