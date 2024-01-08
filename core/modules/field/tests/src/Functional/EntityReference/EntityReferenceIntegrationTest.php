@@ -7,7 +7,7 @@ use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\config\Traits\AssertConfigEntityImportTrait;
-use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
+use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 
 /**
  * Tests various Entity reference UI components.
@@ -17,7 +17,7 @@ use Drupal\Tests\field\Traits\EntityReferenceFieldCreationTrait;
 class EntityReferenceIntegrationTest extends BrowserTestBase {
 
   use AssertConfigEntityImportTrait;
-  use EntityReferenceFieldCreationTrait;
+  use EntityReferenceTestTrait;
 
   /**
    * The entity type used in this test.

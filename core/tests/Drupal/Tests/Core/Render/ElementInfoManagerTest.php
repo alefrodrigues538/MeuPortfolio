@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\Core\Render;
 
-use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Render\ElementInfoManager;
 use Drupal\Core\Theme\ActiveTheme;
 use Drupal\Tests\UnitTestCase;
@@ -42,11 +41,11 @@ class ElementInfoManagerTest extends UnitTestCase {
   protected $themeManager;
 
   /**
-   * The mocked theme handler.
+   * The cache tags invalidator.
    *
-   * @var \Drupal\Core\Extension\ThemeHandlerInterface|\PHPUnit\Framework\MockObject\MockObject
+   * @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface|\PHPUnit\Framework\MockObject\MockObject
    */
-  protected $themeHandler;
+  protected $cacheTagsInvalidator;
 
   /**
    * {@inheritdoc}
@@ -57,11 +56,11 @@ class ElementInfoManagerTest extends UnitTestCase {
     parent::setUp();
 
     $this->cache = $this->createMock('Drupal\Core\Cache\CacheBackendInterface');
-    $this->themeHandler = $this->createMock(ThemeHandlerInterface::class);
+    $this->cacheTagsInvalidator = $this->createMock('Drupal\Core\Cache\CacheTagsInvalidatorInterface');
     $this->moduleHandler = $this->createMock('Drupal\Core\Extension\ModuleHandlerInterface');
     $this->themeManager = $this->createMock('Drupal\Core\Theme\ThemeManagerInterface');
 
-    $this->elementInfo = new ElementInfoManager(new \ArrayObject(), $this->cache, $this->themeHandler, $this->moduleHandler, $this->themeManager);
+    $this->elementInfo = new ElementInfoManager(new \ArrayObject(), $this->cache, $this->cacheTagsInvalidator, $this->moduleHandler, $this->themeManager);
   }
 
   /**
@@ -86,7 +85,7 @@ class ElementInfoManagerTest extends UnitTestCase {
       ]);
 
     $element_info = $this->getMockBuilder('Drupal\Core\Render\ElementInfoManager')
-      ->setConstructorArgs([new \ArrayObject(), $this->cache, $this->themeHandler, $this->moduleHandler, $this->themeManager])
+      ->setConstructorArgs([new \ArrayObject(), $this->cache, $this->cacheTagsInvalidator, $this->moduleHandler, $this->themeManager])
       ->onlyMethods(['getDefinitions', 'createInstance'])
       ->getMock();
 
@@ -144,7 +143,7 @@ class ElementInfoManagerTest extends UnitTestCase {
       ->method('getActiveTheme')
       ->willReturn(new ActiveTheme(['name' => 'test']));
 
-    $element_info = new TestElementInfoManager(new \ArrayObject(), $this->cache, $this->themeHandler, $this->moduleHandler, $this->themeManager);
+    $element_info = new TestElementInfoManager(new \ArrayObject(), $this->cache, $this->cacheTagsInvalidator, $this->moduleHandler, $this->themeManager);
     $this->assertSame('baz', $element_info->getInfoProperty('foo', '#bar'));
     $this->assertNull($element_info->getInfoProperty('foo', '#non_existing_property'));
     $this->assertSame('qux', $element_info->getInfoProperty('foo', '#non_existing_property', 'qux'));

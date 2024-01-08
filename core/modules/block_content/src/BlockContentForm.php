@@ -41,51 +41,6 @@ class BlockContentForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function actions(array $form, FormStateInterface $form_state): array {
-    $element = parent::actions($form, $form_state);
-
-    if ($this->getRequest()->query->has('theme')) {
-      $element['submit']['#value'] = $this->t('Save and configure');
-    }
-
-    if ($this->currentUser()->hasPermission('administer blocks') && !$this->getRequest()->query->has('theme') && $this->entity->isNew()) {
-      $element['configure_block'] = [
-        '#type' => 'submit',
-        '#value' => $this->t('Save and configure'),
-        '#weight' => 20,
-        '#submit' => array_merge($element['submit']['#submit'], ['::configureBlock']),
-      ];
-    }
-
-    return $element;
-  }
-
-  /**
-   * Form submission handler for the 'configureBlock' action.
-   *
-   * @param array $form
-   *   An associative array containing the structure of the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current state of the form.
-   */
-  public function configureBlock(array $form, FormStateInterface $form_state): void {
-    $block = $this->entity;
-    if (!$theme = $block->getTheme()) {
-      $theme = $this->config('system.theme')->get('default');
-    }
-    $form_state->setRedirect(
-      'block.admin_add',
-      [
-        'plugin_id' => 'block_content:' . $block->uuid(),
-        'theme' => $theme,
-      ]
-    );
-    $form_state->setIgnoreDestination();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function save(array $form, FormStateInterface $form_state) {
     $block = $this->entity;
 
@@ -109,19 +64,19 @@ class BlockContentForm extends ContentEntityForm {
       $form_state->setValue('id', $block->id());
       $form_state->set('id', $block->id());
       if ($insert) {
-        $theme = $block->getTheme();
-        if ($theme) {
-          $form_state->setRedirect(
-            'block.admin_add',
-            [
-              'plugin_id' => 'block_content:' . $block->uuid(),
-              'theme' => $theme,
-            ]
-          );
+        if (!$theme = $block->getTheme()) {
+          $theme = $this->config('system.theme')->get('default');
         }
-        else {
-          $form_state->setRedirectUrl($block->toUrl('collection'));
-        }
+        $form_state->setRedirect(
+          'block.admin_add',
+          [
+            'plugin_id' => 'block_content:' . $block->uuid(),
+            'theme' => $theme,
+          ]
+        );
+      }
+      else {
+        $form_state->setRedirectUrl($block->toUrl('collection'));
       }
     }
     else {

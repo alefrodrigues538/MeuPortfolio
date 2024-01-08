@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\system\Kernel\Theme;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Component\Render\MarkupInterface;
 
@@ -41,10 +42,10 @@ class ThemeTest extends KernelTestBase {
         '#attributes' => ['data-foo' => 'bar'],
       ],
       'attributes' => [
-        'id' => 'some_attribute',
+        'id' => 'bazinga',
       ],
     ];
-    $this->assertThemeOutput('theme_test_render_element', $theme_test_render_element, '<div id="some_attribute" data-foo="bar" data-variables-are-preprocessed></div>' . "\n");
+    $this->assertThemeOutput('theme_test_render_element', $theme_test_render_element, '<div id="bazinga" data-foo="bar" data-variables-are-preprocessed></div>' . "\n");
   }
 
   /**
@@ -57,7 +58,7 @@ class ThemeTest extends KernelTestBase {
     $types = ['null' => NULL, 'false' => FALSE, 'integer' => 1, 'string' => 'foo', 'empty_string' => ''];
     foreach ($types as $type => $example) {
       $output = \Drupal::theme()->render('theme_test_foo', ['foo' => $example]);
-      $this->assertTrue($output instanceof MarkupInterface || is_string($output), "\Drupal::theme() returns an object that implements MarkupInterface or a string for data type $type.");
+      $this->assertTrue($output instanceof MarkupInterface || is_string($output), new FormattableMarkup('\Drupal::theme() returns an object that implements MarkupInterface or a string for data type @type.', ['@type' => $type]));
       if ($output instanceof MarkupInterface) {
         $this->assertSame((string) $example, $output->__toString());
       }

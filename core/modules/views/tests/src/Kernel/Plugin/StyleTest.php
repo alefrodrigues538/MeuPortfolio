@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\views\Kernel\Plugin;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Tests\views\Kernel\ViewsKernelTestBase;
 use Drupal\views\Views;
 use Drupal\views_test_data\Plugin\views\row\RowTest;
@@ -310,7 +309,8 @@ class StyleTest extends ViewsKernelTestBase {
    *   The HTML DOM.
    */
   protected function getHtmlDom($output) {
-    $html_dom = Html::load($output);
+    $html_dom = new \DOMDocument();
+    @$html_dom->loadHTML($output);
     if ($html_dom) {
       // It's much easier to work with simplexml than DOM, luckily enough
       // we can just simply import our DOM tree.

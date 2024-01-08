@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\system\Kernel\Common;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Language\Language;
@@ -29,16 +30,16 @@ class UrlTest extends KernelTestBase {
     // Test link generator.
     $text = $this->randomMachineName();
     $path = "<SCRIPT>alert('XSS')</SCRIPT>";
-    $encoded_path = "%3CSCRIPT%3Ealert%28%27XSS%27%29%3C/SCRIPT%3E";
+    $encoded_path = "3CSCRIPT%3Ealert%28%27XSS%27%29%3C/SCRIPT%3E";
 
     $link = Link::fromTextAndUrl($text, Url::fromUserInput('/' . $path))->toString();
-    $this->assertStringContainsString($encoded_path, $link, "XSS attack $path was filtered by \\Drupal\\Core\\Utility\\LinkGeneratorInterface::generate().");
-    $this->assertStringNotContainsString($path, $link, "XSS attack $path was filtered by \\Drupal\\Core\\Utility\\LinkGeneratorInterface::generate().");
+    $this->assertStringContainsString($encoded_path, $link, new FormattableMarkup('XSS attack @path was filtered by \Drupal\Core\Utility\LinkGeneratorInterface::generate().', ['@path' => $path]));
+    $this->assertStringNotContainsString($path, $link, new FormattableMarkup('XSS attack @path was filtered by \Drupal\Core\Utility\LinkGeneratorInterface::generate().', ['@path' => $path]));
 
     // Test \Drupal\Core\Url.
     $link = Url::fromUri('base:' . $path)->toString();
-    $this->assertStringContainsString($encoded_path, $link, "XSS attack $path was filtered by #theme");
-    $this->assertStringNotContainsString($path, $link, "XSS attack $path was filtered by #theme");
+    $this->assertStringContainsString($encoded_path, $link, new FormattableMarkup('XSS attack @path was filtered by #theme', ['@path' => $path]));
+    $this->assertStringNotContainsString($path, $link, new FormattableMarkup('XSS attack @path was filtered by #theme', ['@path' => $path]));
   }
 
   /**
@@ -96,17 +97,17 @@ class UrlTest extends KernelTestBase {
     $hreflang_override_link['#options']['attributes']['hreflang'] = 'foo';
 
     $rendered = $renderer->renderRoot($hreflang_link);
-    $this->assertTrue($this->hasAttribute('hreflang', $rendered, $langcode), "hreflang attribute with value $langcode is present on a rendered link when langcode is provided in the render array.");
+    $this->assertTrue($this->hasAttribute('hreflang', $rendered, $langcode), new FormattableMarkup('hreflang attribute with value @langcode is present on a rendered link when langcode is provided in the render array.', ['@langcode' => $langcode]));
 
     $rendered = $renderer->renderRoot($hreflang_override_link);
-    $this->assertTrue($this->hasAttribute('hreflang', $rendered, 'foo'), 'hreflang attribute with value foo is present on a rendered link when @hreflang is provided in the render array.');
+    $this->assertTrue($this->hasAttribute('hreflang', $rendered, 'foo'), new FormattableMarkup('hreflang attribute with value @hreflang is present on a rendered link when @hreflang is provided in the render array.', ['@hreflang' => 'foo']));
 
     // Test adding a custom class in links produced by
     // \Drupal\Core\Utility\LinkGeneratorInterface::generate() and #type 'link'.
     // Test the link generator.
     $class_l = $this->randomMachineName();
     $link_l = Link::fromTextAndUrl($this->randomMachineName(), Url::fromRoute('common_test.destination', [], ['attributes' => ['class' => [$class_l]]]))->toString();
-    $this->assertTrue($this->hasAttribute('class', $link_l, $class_l), "Custom class $class_l is present on link when requested by Link::toString()");
+    $this->assertTrue($this->hasAttribute('class', $link_l, $class_l), new FormattableMarkup('Custom class @class is present on link when requested by Link::toString()', ['@class' => $class_l]));
 
     // Test #type.
     $class_theme = $this->randomMachineName();
@@ -121,7 +122,7 @@ class UrlTest extends KernelTestBase {
       ],
     ];
     $link_theme = $renderer->renderRoot($type_link);
-    $this->assertTrue($this->hasAttribute('class', $link_theme, $class_theme), "Custom class $class_theme is present on link when requested by #type");
+    $this->assertTrue($this->hasAttribute('class', $link_theme, $class_theme), new FormattableMarkup('Custom class @class is present on link when requested by #type', ['@class' => $class_theme]));
   }
 
   /**

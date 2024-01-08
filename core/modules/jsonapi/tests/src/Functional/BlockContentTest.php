@@ -75,6 +75,7 @@ class BlockContentTest extends ResourceTestBase {
 
       case 'PATCH':
         $this->grantPermissionsToTestedRole([
+          'access block library',
           'administer block types',
           'administer block content',
         ]);
@@ -85,7 +86,7 @@ class BlockContentTest extends ResourceTestBase {
         break;
 
       case 'DELETE':
-        $this->grantPermissionsToTestedRole(['delete any basic block content']);
+        $this->grantPermissionsToTestedRole(['access block library', 'delete any basic block content']);
         break;
     }
   }
@@ -162,6 +163,7 @@ class BlockContentTest extends ResourceTestBase {
           ],
           'changed' => (new \DateTime())->setTimestamp($this->entity->getChangedTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
           'info' => 'Llama',
+          'revision_log' => NULL,
           'revision_created' => (new \DateTime())->setTimestamp($this->entity->getRevisionCreationTime())->setTimezone(new \DateTimeZone('UTC'))->format(\DateTime::RFC3339),
           'revision_translation_affected' => TRUE,
           'status' => FALSE,
@@ -205,7 +207,7 @@ class BlockContentTest extends ResourceTestBase {
       'data' => [
         'type' => 'block_content--basic',
         'attributes' => [
-          'info' => 'Drama llama',
+          'info' => 'Dramallama',
         ],
       ],
     ];
@@ -217,9 +219,9 @@ class BlockContentTest extends ResourceTestBase {
   protected function getExpectedUnauthorizedAccessMessage($method) {
     return match ($method) {
       'GET' => "The 'access block library' permission is required.",
-      'PATCH' => "The 'edit any basic block content' permission is required.",
+      'PATCH' => "The following permissions are required: 'access block library' AND 'edit any basic block content'.",
       'POST' => "The following permissions are required: 'create basic block content' AND 'access block library'.",
-      'DELETE' => "The 'delete any basic block content' permission is required.",
+      'DELETE' => "The following permissions are required: 'access block library' AND 'delete any basic block content'.",
       default => parent::getExpectedUnauthorizedAccessMessage($method),
     };
   }

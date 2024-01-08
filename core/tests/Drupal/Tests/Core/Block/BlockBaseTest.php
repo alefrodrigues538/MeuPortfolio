@@ -5,8 +5,6 @@ namespace Drupal\Tests\Core\Block;
 use Drupal\block_test\Plugin\Block\TestBlockInstantiation;
 use Drupal\Tests\UnitTestCase;
 
-// cspell:ignore adminlabel
-
 /**
  * @coversDefaultClass \Drupal\Core\Block\BlockBase
  * @group block
@@ -48,7 +46,6 @@ class BlockBaseTest extends UnitTestCase {
   public function providerTestGetMachineNameSuggestion() {
     return [
       ['Admin label', 'adminlabel'],
-      // cspell:disable-next-line
       ['über åwesome', 'uberawesome'],
     ];
   }

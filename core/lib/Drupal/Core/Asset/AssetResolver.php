@@ -4,7 +4,6 @@ namespace Drupal\Core\Asset;
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\NestedArray;
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -338,11 +337,6 @@ class AssetResolver implements AssetResolverInterface {
       // Update the $assets object accordingly, so that it reflects the final
       // settings.
       $assets->setSettings($settings);
-      // Convert ajaxPageState to a compressed string from an array, since it is
-      // used by ajax.js to pass to AJAX requests as a query parameter.
-      if (isset($settings['ajaxPageState']['libraries'])) {
-        $settings['ajaxPageState']['libraries'] = UrlHelper::compressQueryParameter($settings['ajaxPageState']['libraries']);
-      }
       $settings_as_inline_javascript = [
         'type' => 'setting',
         'group' => JS_SETTING,

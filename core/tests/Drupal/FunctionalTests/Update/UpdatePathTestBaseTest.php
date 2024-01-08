@@ -5,7 +5,6 @@ namespace Drupal\FunctionalTests\Update;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Database\Database;
-use Drupal\Core\Site\Settings;
 
 /**
  * Tests the update path base class.
@@ -217,9 +216,9 @@ class UpdatePathTestBaseTest extends UpdatePathTestBase {
    */
   public function testSchemaChecking() {
     // Create some configuration that should be skipped.
-    $this->config('config_schema_test.no_schema')->set('foo', 'bar')->save();
+    $this->config('config_schema_test.noschema')->set('foo', 'bar')->save();
     $this->runUpdates();
-    $this->assertSame('bar', $this->config('config_schema_test.no_schema')->get('foo'));
+    $this->assertSame('bar', $this->config('config_schema_test.noschema')->get('foo'));
 
   }
 
@@ -228,13 +227,6 @@ class UpdatePathTestBaseTest extends UpdatePathTestBase {
    */
   public function testFixturesSetup() {
     $this->assertCount(3, $this->databaseDumpFiles);
-  }
-
-  /**
-   * Tests that settings are prepared correctly.
-   */
-  public function testPrepareSettings(): void {
-    $this->assertSame(1, Settings::get('entity_update_batch_size'));
   }
 
 }

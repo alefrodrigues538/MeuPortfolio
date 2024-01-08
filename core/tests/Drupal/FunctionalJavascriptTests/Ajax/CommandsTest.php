@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\FunctionalJavascriptTests\Ajax;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
@@ -100,7 +98,7 @@ class CommandsTest extends WebDriverTestBase {
     // Tests the 'data' command.
     $page->pressButton("AJAX data command: Issue command.");
     $this->assertTrue($page->waitFor(10, function () use ($session) {
-      return 'test_value' === $session->evaluateScript('window.jQuery("#data_div").data("testkey")');
+      return 'testvalue' === $session->evaluateScript('window.jQuery("#data_div").data("testkey")');
     }));
 
     // Tests the 'html' command.

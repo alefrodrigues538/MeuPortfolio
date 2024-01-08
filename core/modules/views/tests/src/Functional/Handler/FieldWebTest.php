@@ -177,7 +177,8 @@ class FieldWebTest extends ViewTestBase {
    *   An array containing simplexml objects.
    */
   protected function parseContent($content) {
-    $htmlDom = Html::load($content);
+    $htmlDom = new \DOMDocument();
+    @$htmlDom->loadHTML('<?xml encoding="UTF-8">' . $content);
     $elements = simplexml_import_dom($htmlDom);
 
     return $elements;

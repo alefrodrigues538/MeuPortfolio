@@ -45,9 +45,8 @@ class InfoParserUnitTest extends UnitTestCase {
    */
   public function testInfoParserNonExisting() {
     vfsStream::setup('modules');
-    $this->expectException('\Drupal\Core\Extension\InfoParserException');
-    $this->expectExceptionMessage('Unable to parse vfs://modules/does_not_exist.info.txt as it does not exist');
-    $this->infoParser->parse(vfsStream::url('modules') . '/does_not_exist.info.txt');
+    $info = $this->infoParser->parse(vfsStream::url('modules') . '/does_not_exist.info.txt');
+    $this->assertEmpty($info, 'Non existing info.yml returns empty array.');
   }
 
   /**
@@ -86,13 +85,13 @@ BROKEN_INFO;
    * @covers ::parse
    */
   public function testInfoParserMissingKeys() {
-    $missing_keys = <<<MISSING_KEYS
+    $missing_keys = <<<MISSINGKEYS
 # info.yml for testing missing name, description, and type keys.
 package: Core
 version: VERSION
 dependencies:
   - field
-MISSING_KEYS;
+MISSINGKEYS;
 
     vfsStream::setup('modules');
     vfsStream::create([
@@ -173,7 +172,7 @@ MISSING_CORE_VERSION_REQUIREMENT;
    * @covers ::parse
    */
   public function testInfoParserMissingKey() {
-    $missing_key = <<<MISSING_KEY
+    $missing_key = <<<MISSINGKEY
 # info.yml for testing missing type key.
 name: File
 description: 'Defines a file field type.'
@@ -181,7 +180,7 @@ package: Core
 version: VERSION
 dependencies:
   - field
-MISSING_KEY;
+MISSINGKEY;
 
     vfsStream::setup('modules');
     vfsStream::create([
@@ -210,7 +209,7 @@ MISSING_KEY;
    * @covers ::parse
    */
   public function testInfoParserCommonInfo() {
-    $common = <<<COMMON
+    $common = <<<COMMONTEST
 core_version_requirement: '*'
 name: common_test
 type: module
@@ -218,7 +217,7 @@ description: 'testing info file parsing'
 simple_string: 'A simple string'
 version: "VERSION"
 double_colon: dummyClassName::method
-COMMON;
+COMMONTEST;
 
     vfsStream::setup('modules');
 
@@ -243,12 +242,12 @@ COMMON;
    * @covers ::parse
    */
   public function testInfoParserCoreInfo() {
-    $common = <<<CORE
+    $common = <<<CORETEST
 name: core_test
 type: module
 version: "VERSION"
 description: 'testing info file parsing'
-CORE;
+CORETEST;
 
     vfsStream::setup('core');
 
@@ -297,9 +296,7 @@ CORE_INCOMPATIBILITY;
    * Data provider for testCoreIncompatibility().
    */
   public function providerCoreIncompatibility() {
-    // Remove possible stability suffix to properly parse 11.0-dev.
-    $version = preg_replace('/-dev$/', '', \Drupal::VERSION);
-    [$major, $minor] = explode('.', $version, 2);
+    [$major, $minor] = explode('.', \Drupal::VERSION);
 
     $next_minor = $minor + 1;
     $next_major = $major + 1;
@@ -506,7 +503,7 @@ INFO;
     vfsStream::setup('modules');
     // Use a random file name to bypass the static caching in
     // \Drupal\Core\Extension\InfoParser.
-    $random = $this->randomMachineName();
+    $random = mb_strtolower($this->randomMachineName());
     $filename = "lifecycle-$random.info.yml";
     vfsStream::create([
       'fixtures' => [

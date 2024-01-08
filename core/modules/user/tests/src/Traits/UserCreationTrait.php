@@ -1,10 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\Tests\user\Traits;
 
 use Drupal\Core\Database\DatabaseExceptionWrapper;
+use Drupal\Core\Database\SchemaObjectExistsException;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\KernelTests\KernelTestBase;
@@ -55,6 +54,13 @@ trait UserCreationTrait {
     // the "sequences" table.
     if (!\Drupal::moduleHandler()->moduleExists('system')) {
       $values['uid'] = 0;
+    }
+    if ($this instanceof KernelTestBase && (!isset($values['uid']) || $values['uid'])) {
+      try {
+        $this->installSchema('system', ['sequences']);
+      }
+      catch (SchemaObjectExistsException $e) {
+      }
     }
 
     // Creating an administrator or assigning custom permissions would result in
@@ -240,7 +246,7 @@ trait UserCreationTrait {
   protected function createRole(array $permissions, $rid = NULL, $name = NULL, $weight = NULL) {
     // Generate a random, lowercase machine name if none was passed.
     if (!isset($rid)) {
-      $rid = $this->randomMachineName(8);
+      $rid = strtolower($this->randomMachineName(8));
     }
     // Generate a random label.
     if (!isset($name)) {

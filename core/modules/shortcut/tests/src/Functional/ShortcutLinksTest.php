@@ -130,7 +130,7 @@ class ShortcutLinksTest extends ShortcutTestBase {
     $this->drupalLogin($this->adminUser);
     $edit = [
       'label' => $this->randomMachineName(),
-      'id' => $this->randomMachineName(),
+      'id' => strtolower($this->randomMachineName()),
     ];
     $this->drupalGet('admin/config/user-interface/shortcut/add-set');
     $this->submitForm($edit, 'Save');
@@ -412,8 +412,8 @@ class ShortcutLinksTest extends ShortcutTestBase {
       'customize shortcut links',
       'switch shortcut sets',
     ];
-    $no_access_user = $this->drupalCreateUser($test_permissions);
-    $this->drupalLogin($no_access_user);
+    $noaccess_user = $this->drupalCreateUser($test_permissions);
+    $this->drupalLogin($noaccess_user);
 
     // Verify that set administration pages are inaccessible without the
     // 'access shortcuts' permission.
@@ -421,7 +421,7 @@ class ShortcutLinksTest extends ShortcutTestBase {
     $this->assertSession()->statusCodeEquals(403);
     $this->drupalGet('admin/config/user-interface/shortcut/manage/default');
     $this->assertSession()->statusCodeEquals(403);
-    $this->drupalGet('user/' . $no_access_user->id() . '/shortcuts');
+    $this->drupalGet('user/' . $noaccess_user->id() . '/shortcuts');
     $this->assertSession()->statusCodeEquals(403);
   }
 

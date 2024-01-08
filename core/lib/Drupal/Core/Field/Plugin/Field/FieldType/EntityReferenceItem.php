@@ -4,6 +4,7 @@ namespace Drupal\Core\Field\Plugin\Field\FieldType;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
@@ -12,6 +13,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Entity\TypedData\EntityDataDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldException;
+use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\PreconfiguredFieldUiOptionsInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -34,13 +36,13 @@ use Drupal\Core\Validation\Plugin\Validation\Constraint\AllowedValuesConstraint;
  *   id = "entity_reference",
  *   label = @Translation("Entity reference"),
  *   description = @Translation("An entity field containing an entity reference."),
- *   category = "reference",
+ *   category = @Translation("Reference"),
  *   default_widget = "entity_reference_autocomplete",
  *   default_formatter = "entity_reference_label",
  *   list_class = "\Drupal\Core\Field\EntityReferenceFieldItemList",
  * )
  */
-class EntityReferenceItem extends EntityReferenceItemBase implements OptionsProviderInterface, PreconfiguredFieldUiOptionsInterface {
+class EntityReferenceItem extends FieldItemBase implements OptionsProviderInterface, PreconfiguredFieldUiOptionsInterface {
 
   /**
    * {@inheritdoc}
@@ -482,7 +484,6 @@ class EntityReferenceItem extends EntityReferenceItemBase implements OptionsProv
     ];
     $form['handler']['handler_submit'] = [
       '#type' => 'submit',
-      '#name' => 'handler_settings_submit',
       '#value' => $this->t('Change handler'),
       '#limit_validation_errors' => [],
       '#attributes' => [
@@ -705,8 +706,8 @@ class EntityReferenceItem extends EntityReferenceItemBase implements OptionsProv
   public static function fieldSettingsAjaxProcessElement(&$element, $main_form) {
     if (!empty($element['#ajax'])) {
       $element['#ajax'] = [
-        'trigger_as' => ['name' => 'handler_settings_submit'],
-        'wrapper' => 'field-combined',
+        'callback' => [static::class, 'settingsAjax'],
+        'wrapper' => $main_form['#id'],
         'element' => $main_form['#array_parents'],
       ];
     }
@@ -732,13 +733,20 @@ class EntityReferenceItem extends EntityReferenceItemBase implements OptionsProv
   }
 
   /**
+   * Ajax callback for the handler settings form.
+   *
+   * @see static::fieldSettingsForm()
+   */
+  public static function settingsAjax($form, FormStateInterface $form_state) {
+    return NestedArray::getValue($form, $form_state->getTriggeringElement()['#ajax']['element']);
+  }
+
+  /**
    * Submit handler for the non-JS case.
    *
    * @see static::fieldSettingsForm()
    */
   public static function settingsAjaxSubmit($form, FormStateInterface $form_state) {
-    $form_storage = &$form_state->getStorage();
-    unset($form_storage['default_value_widget']);
     $form_state->setRebuild();
   }
 
@@ -768,21 +776,6 @@ class EntityReferenceItem extends EntityReferenceItemBase implements OptionsProv
     }
 
     return $options;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function getReferenceableBundles(FieldDefinitionInterface $field_definition): array {
-    $settings = $field_definition->getSettings();
-    $target_type_id = $settings['target_type'];
-    $handler_settings = $settings['handler_settings'];
-
-    $has_target_bundles = isset($handler_settings['target_bundles']) && !empty($handler_settings['target_bundles']);
-    $target_bundles = $has_target_bundles
-      ? $handler_settings['target_bundles']
-      : array_keys(\Drupal::service('entity_type.bundle.info')->getBundleInfo($target_type_id));
-    return [$target_type_id => $target_bundles];
   }
 
 }

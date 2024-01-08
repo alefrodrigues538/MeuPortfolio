@@ -11,7 +11,7 @@
 
 namespace Symfony\Component\Serializer\Normalizer;
 
-use Symfony\Component\Serializer\Attribute\Ignore;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 /**
  * Converts between objects with getter and setter methods and arrays.
@@ -38,7 +38,7 @@ use Symfony\Component\Serializer\Attribute\Ignore;
  */
 class GetSetMethodNormalizer extends AbstractObjectNormalizer
 {
-    private static array $setterAccessibleCache = [];
+    private static $setterAccessibleCache = [];
 
     public function getSupportedTypes(?string $format): array
     {

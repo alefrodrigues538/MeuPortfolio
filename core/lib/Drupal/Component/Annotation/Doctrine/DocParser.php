@@ -637,8 +637,8 @@ final class DocParser
             }
 
             $this->isNestedAnnotation = false;
-            if (false !== $annotation = $this->Annotation()) {
-                $annotations[] = $annotation;
+            if (false !== $annot = $this->Annotation()) {
+                $annotations[] = $annot;
             }
         }
 

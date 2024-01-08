@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\Tests\ckeditor5\FunctionalJavascript;
 
 use Drupal\editor\Entity\Editor;
@@ -119,8 +117,6 @@ class ImageTest extends ImageTestBase {
       'data-entity-type' => 'file',
       'data-entity-uuid' => $this->file->uuid(),
       'src' => $this->file->createFileUrl(),
-      'width' => '40',
-      'height' => '20',
     ];
   }
 

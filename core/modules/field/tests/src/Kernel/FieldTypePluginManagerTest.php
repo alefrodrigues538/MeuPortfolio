@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\field\Kernel;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Extension\ExtensionDiscovery;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\entity_test\Entity\EntityTest;
@@ -20,8 +21,8 @@ class FieldTypePluginManagerTest extends FieldKernelTestBase {
     $field_type_manager = \Drupal::service('plugin.manager.field.field_type');
     foreach (['test_field', 'shape', 'hidden_test_field'] as $type) {
       $definition = $field_type_manager->getDefinition($type);
-      $this->assertSame($field_type_manager->getDefaultStorageSettings($type), $definition['class']::defaultStorageSettings(), "$type storage settings were returned");
-      $this->assertSame($field_type_manager->getDefaultFieldSettings($type), $definition['class']::defaultFieldSettings(), "$type field settings were returned");
+      $this->assertSame($field_type_manager->getDefaultStorageSettings($type), $definition['class']::defaultStorageSettings(), new FormattableMarkup("%type storage settings were returned", ['%type' => $type]));
+      $this->assertSame($field_type_manager->getDefaultFieldSettings($type), $definition['class']::defaultFieldSettings(), new FormattableMarkup(" %type field settings were returned", ['%type' => $type]));
     }
   }
 
@@ -48,7 +49,7 @@ class FieldTypePluginManagerTest extends FieldKernelTestBase {
       $instance = $field_type_manager->createInstance($type, $configuration);
 
       $this->assertInstanceOf($class, $instance);
-      $this->assertEquals($field_name, $instance->getName(), "Instance name is $field_name");
+      $this->assertEquals($field_name, $instance->getName(), new FormattableMarkup('Instance name is @name', ['@name' => $field_name]));
     }
   }
 
@@ -79,7 +80,7 @@ class FieldTypePluginManagerTest extends FieldKernelTestBase {
     $instance = $field_type_manager->createInstance($type, $configuration);
 
     $this->assertInstanceOf($class, $instance);
-    $this->assertEquals($field_name, $instance->getName(), "Instance name is $field_name");
+    $this->assertEquals($field_name, $instance->getName(), new FormattableMarkup('Instance name is @name', ['@name' => $field_name]));
     $this->assertEquals('Jenny', $instance->getFieldDefinition()->getLabel(), 'Instance label is Jenny');
     $this->assertEquals([['value' => 8675309]], $instance->getFieldDefinition()->getDefaultValue($entity), 'Instance default_value is 8675309');
   }
