@@ -1,0 +1,16 @@
+#header {
+  background-color: black !important;
+
+  .teste {
+    color: gray;
+    background-color: orange;
+  }
+
+  .navbar {
+    .navbar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}
