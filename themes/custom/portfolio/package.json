@@ -4,6 +4,8 @@
   "description": "Barrio SASS implementation",
   "main": "index.js",
   "scripts": {
+    "sass": "npx node-sass ./scss/style.scss ./css/style.css && npx node-sass --output-style compressed ./scss/style.scss ./css/style.min.css",
+    "sass-watch": "npx node-sass --watch ./scss/style.scss ./css/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -24,6 +26,8 @@
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.1.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^5.0.2",
     "gulp-clean-css": "3.9.4",
     "gulp-concat": "^2.6.1",
     "gulp-html-replace": "^1.6.2",
