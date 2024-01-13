@@ -1,6 +1,6 @@
 uuid: 83be0372-a834-4c9e-bafb-44f074e6edf2
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.footer
@@ -10,14 +10,14 @@ dependencies:
     - portfolio
 id: portfolio_footer
 theme: portfolio
-region: footer
-weight: 0
+region: footer_first
+weight: -2
 provider: null
 plugin: 'system_menu_block:footer'
 settings:
   id: 'system_menu_block:footer'
   label: Footer
-  label_display: visible
+  label_display: '0'
   provider: system
   level: 1
   depth: 0

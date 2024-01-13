@@ -1,0 +1,7 @@
+name: 'block_component'
+type: module
+description: A Block Component module
+core_version_requirement: ^8.8.0 || ^9 || ^10
+dependencies:
+ - drupal:block
+ - drupal:config

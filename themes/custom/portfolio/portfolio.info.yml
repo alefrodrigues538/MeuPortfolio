@@ -9,10 +9,14 @@ libraries:
   - portfolio/global-styling
 libraries-override:
   bootstrap_barrio/global-styling: false
-regions:
-  header: Header
+regions:  
+  header: Header 
+  primary_menu: 'Primary menu' 
+  page_top: 'Page top'   
+  breadcrumb: Breadcrumb
   content: Content
-  footer: Footer
+  sidebar_first: 'Sidebar first'
+  footer_first: 'Footer first'
 
 # Information added by Drupal.org packaging script on 2023-09-26
 version: '5.0.10'

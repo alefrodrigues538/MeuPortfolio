@@ -878,3 +878,4 @@ $databases['default']['default'] = array(
 );
 
 $settings['config_sync_directory'] = 'config/sync';
+$config['system.logging']['error_level'] = 'verbose';

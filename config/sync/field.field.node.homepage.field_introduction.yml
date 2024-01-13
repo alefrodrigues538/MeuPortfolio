@@ -1,0 +1,24 @@
+uuid: 6d269de4-9280-43df-ab54-8e4158023e41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_introduction
+    - filter.format.full_html
+    - node.type.homepage
+  module:
+    - text
+id: node.homepage.field_introduction
+field_name: field_introduction
+entity_type: node
+bundle: homepage
+label: Introduction
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

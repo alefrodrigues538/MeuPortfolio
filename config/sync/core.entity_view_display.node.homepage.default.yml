@@ -1,0 +1,28 @@
+uuid: d3aec5f8-9ac8-4971-a401-be1c176a1cfd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.homepage.field_introduction
+    - node.type.homepage
+  module:
+    - text
+    - user
+id: node.homepage.default
+targetEntityType: node
+bundle: homepage
+mode: default
+content:
+  field_introduction:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }
