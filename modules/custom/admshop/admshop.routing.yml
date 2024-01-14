@@ -1,0 +1,39 @@
+admshop.list_products:
+  path: "/admshop/products"
+  defaults:
+    _form: '\Drupal\admshop\Form\ListProductsForm'
+    _title: "Lista de produtos"
+  requirements:
+    _permission: "access content"
+
+admshop.show_product:
+  path: "/admshop/product/{product_id}"
+  defaults:
+    _form: '\Drupal\admshop\Form\ShowProductForm'
+    _title: "Detalhes do produto"
+  requirements:
+    _permission: "access content"
+
+admshop.add_product:
+  path: "/admshop/product/add"
+  defaults:
+    _form: '\Drupal\admshop\Form\AddProductForm'
+    _title: "Adicionar Produto."
+  requirements:
+    _permission: "access content"
+
+admshop.update_product:
+  path: "/admshop/product/{product_id}/edit"
+  defaults:
+    _form: '\Drupal\admshop\Form\UpdateProductForm'
+    _title: "Editar produto."
+  requirements:
+    _permission: "access content"
+
+admshop.delete_product:
+  path: "/admshop/product/{product_id}/delete"
+  defaults:
+    _form: '\Drupal\admshop\Form\DeleteProductForm'
+    _title: "Deletar produto."
+  requirements:
+    _permission: "access content"

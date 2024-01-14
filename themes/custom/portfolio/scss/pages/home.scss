@@ -1,0 +1,89 @@
+@import '../typography.scss';
+@import '../colors.scss';
+
+.introduce-text {
+  font-family: $font-roboto-condensed;
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: 0;
+  line-height: 70px;
+  padding-left: 3rem;
+
+  @include down-md {
+    padding-left: 2.25rem;
+    font-weight: 900;
+    line-height: 55px;
+    font-size: 3rem;
+  }
+}
+
+.introduce-text-html,
+.introduce-text-body,
+.introduce-text-h1,
+.introduce-text-p {
+  font-family: $font-bad-script;
+  font-size: 1.45rem;
+  opacity: 0.8;
+  line-height: 30px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.introduce-text-body {
+  padding-left: 1rem;
+
+  @include down-md {
+    padding-left: 0.75rem;
+  }
+}
+
+.introduce-text-h1,
+.introduce-text-p {
+  padding-left: 2rem;
+
+  @include down-md {
+    padding-left: 1.5rem;
+  }
+}
+
+.introduce-text-master-skills {
+  font-family: $font-roboto-flex;
+  font-weight: 200;
+  font-size: 2rem;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  padding-left: 3rem;
+
+  @include down-md {
+    padding-left: 2.25rem;
+  }
+}
+
+.introduce-btn {
+  margin-left: 3rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: $nav-link;
+  border: 1px solid $nav-link;
+  text-transform: uppercase;
+  line-height: 75px;
+
+  @include down-md {
+    display: block;
+    margin: 0 auto;
+    margin-top: 1rem;
+    width: 237px;
+    padding: 0;
+    text-align: center;
+  }
+}
+
+.field--name-field-bg-img img * {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100hw;
+  z-index: -999;
+}

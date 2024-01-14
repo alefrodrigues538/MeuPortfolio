@@ -1,0 +1,24 @@
+uuid: 54e5dc62-9712-4b09-aa16-1de7db8ecb38
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body_text
+    - filter.format.full_html
+    - paragraphs.paragraphs_type.introduction
+  module:
+    - text
+id: paragraph.introduction.field_body_text
+field_name: field_body_text
+entity_type: paragraph
+bundle: introduction
+label: 'Body Text'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

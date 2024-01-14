@@ -49,7 +49,7 @@ bootstrap_barrio_h1_color: base
 bootstrap_barrio_h2_color: base
 bootstrap_barrio_h3_color: base
 bootstrap_barrio_table_head: ''
-bootstrap_barrio_container: container-xxl
+bootstrap_barrio_container: container-fluid
 bootstrap_barrio_region_clean_header: 1
 bootstrap_barrio_region_width_header: 0
 bootstrap_barrio_region_class_header: ''

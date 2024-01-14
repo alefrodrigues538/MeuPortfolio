@@ -1,0 +1,60 @@
+uuid: 6630d180-3fec-47d4-a662-46fbdefe3f55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.paragraphs_page.field_blocks
+    - node.type.paragraphs_page
+  module:
+    - paragraphs
+    - path
+id: node.paragraphs_page.default
+targetEntityType: node
+bundle: paragraphs_page
+mode: default
+content:
+  field_blocks:
+    type: paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed_expand_nested
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: select
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: add_above
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  sticky: true
+  uid: true

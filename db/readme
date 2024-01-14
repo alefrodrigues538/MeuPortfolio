@@ -1,0 +1,41 @@
+Usage Examples : entity-update (Via drush)
+Drush command : entity:update
+Alias : upe
+
+1. Show Entities to update
+drush upe --show
+
+2. Update without automatic database backup using basic method.
+Not recommended for --all, suitable for --basic
+drush upe --basic --nobackup
+
+3. Update All Entities.
+drush upe --all
+
+4. Create entities from entity backup database.
+If entity recreation failed (on drush upe --all), You can you this option to
+create entities from entity backup database.
+drush upe --rescue
+
+5. Cleanup entity backup database
+drush upe --clean
+
+6. Install New Entity type after module installation or update a selected entity type.
+drush upe ENTITY_TYPE_ID -y
+
+Usage Examples : entity-check
+This command allow to show entities and entity types via drush.
+Drush command : entity:check
+Alias : upec
+
+1. Show The summery of an entity type.
+drush upec node
+
+2. Show all entity types.
+drush upec --types
+
+3. Show all entity types contains "block".
+drush upec block --types
+
+4. Show 5 entities from 2 of the type 'node'.
+drush upec node --list --start=2 --length=5

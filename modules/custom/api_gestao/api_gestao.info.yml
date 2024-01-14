@@ -1,0 +1,7 @@
+name: 'api_gestao'
+type: module
+description: A module to personal management
+core_version_requirement: ^8.8.0 || ^9 || ^10
+dependencies:
+ - drupal:block
+ - drupal:config

@@ -1,0 +1,22 @@
+uuid: 994ea39b-b478-4f46-9428-679a5137fcdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.introduction.field_body_text
+    - paragraphs.paragraphs_type.introduction
+  module:
+    - text
+id: paragraph.introduction.default
+targetEntityType: paragraph
+bundle: introduction
+mode: default
+content:
+  field_body_text:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

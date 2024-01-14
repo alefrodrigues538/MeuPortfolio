@@ -1,0 +1,6 @@
+name: AdminShop
+description: Provides all entites and forms to ecommerce.
+package: Ecommerce
+type: module
+configure: shop.settings
+core_version_requirement: ^9.3 || ^10

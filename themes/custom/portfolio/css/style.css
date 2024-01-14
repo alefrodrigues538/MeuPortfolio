@@ -5,6 +5,18 @@ Description: Bootstrap 4 with Sass
 /* VARIABLES */
 /* TYPOGRAPHY */
 /* Google Fonts */
+@import url("https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic,900,900italic");
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic,900,900italic");
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&display=swap");
 :root,
 [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
@@ -9284,6 +9296,7 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 
+/* VARIABLES */
 html,
 body,
 main {
@@ -9293,6 +9306,10 @@ main {
 main,
 #sidebar_first {
   padding-top: 1rem; }
+
+p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
+pre {
+  color: #fff; }
 
 .navbar {
   display: flex;
@@ -9311,7 +9328,7 @@ main,
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background-color: #111;
+      background-color: #000000;
       position: relative;
       left: -0.75rem;
       top: -0.5rem;
@@ -9358,10 +9375,88 @@ main,
   background-color: #202020;
   transition-duration: background-color 250ms ease; }
 
+/* TYPOGRAPHY */
+/* Google Fonts */
+.introduce-text {
+  font-family: "Roboto Condensed", Arial, Verdana, sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: 0;
+  line-height: 70px;
+  padding-left: 3rem; }
+  @media (max-width: 767px) {
+    .introduce-text {
+      padding-left: 2.25rem;
+      font-weight: 900;
+      line-height: 55px;
+      font-size: 3rem; } }
+
+.introduce-text-html,
+.introduce-text-body,
+.introduce-text-h1,
+.introduce-text-p {
+  font-family: "Bad Script", Arial, Verdana, sans-serif;
+  font-size: 1.45rem;
+  opacity: 0.8;
+  line-height: 30px;
+  font-weight: 400;
+  margin-bottom: 0; }
+
+.introduce-text-body {
+  padding-left: 1rem; }
+  @media (max-width: 767px) {
+    .introduce-text-body {
+      padding-left: 0.75rem; } }
+
+.introduce-text-h1,
+.introduce-text-p {
+  padding-left: 2rem; }
+  @media (max-width: 767px) {
+    .introduce-text-h1,
+    .introduce-text-p {
+      padding-left: 1.5rem; } }
+
+.introduce-text-master-skills {
+  font-family: "Roboto Flex", Arial, Verdana, sans-serif;
+  font-weight: 200;
+  font-size: 2rem;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  padding-left: 3rem; }
+  @media (max-width: 767px) {
+    .introduce-text-master-skills {
+      padding-left: 2.25rem; } }
+
+.introduce-btn {
+  margin-left: 3rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: #10ca9b;
+  border: 1px solid #10ca9b;
+  text-transform: uppercase;
+  line-height: 75px; }
+  @media (max-width: 767px) {
+    .introduce-btn {
+      display: block;
+      margin: 0 auto;
+      margin-top: 1rem;
+      width: 237px;
+      padding: 0;
+      text-align: center; } }
+
+.field--name-field-bg-img img * {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100hw;
+  z-index: -999; }
+
 /* GENERAL STYLES
 -------------------------------------------------*/
 body {
-  background: #fff; }
+  background: #FFFFFF; }
 
 /* COLORS 
 --------------------------------------------------*/

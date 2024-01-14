@@ -4,7 +4,9 @@ module:
   admin_toolbar: 0
   admin_toolbar_search: 0
   admin_toolbar_tools: 0
+  api_gestao: 0
   automated_cron: 0
+  basic_auth: 0
   big_pipe: 0
   block: 0
   block_component: 0
@@ -21,6 +23,7 @@ module:
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0
+  entity_update: 0
   field: 0
   field_ui: 0
   file: 0
@@ -28,6 +31,7 @@ module:
   help: 0
   history: 0
   image: 0
+  jsonapi: 0
   link: 0
   menu_link_content: 0
   menu_ui: 0
@@ -37,7 +41,9 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  rest: 0
   search: 0
+  serialization: 0
   shortcut: 0
   syslog: 0
   system: 0

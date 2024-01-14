@@ -1,0 +1,15 @@
+api_gestao.add_price_gp:
+  path: '/api_gestao/price/add'
+  defaults:
+    _form: '\Drupal\api_gestao\Form\AddPriceGPForm'
+    _title: 'Adicionar Preço'
+  requirements:
+    _permission: 'administer price gestao pessoal entities'
+
+api_gestao.add_product_gp:
+  path: '/api_gestao/product/add'
+  defaults:
+    _form: '\Drupal\api_gestao\Form\AddProductGPForm'
+    _title: 'Adicionar Produto'
+  requirements:
+    _permission: 'administer price gestao pessoal entities'

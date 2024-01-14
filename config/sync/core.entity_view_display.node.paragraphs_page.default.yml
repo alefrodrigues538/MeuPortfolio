@@ -1,0 +1,26 @@
+uuid: 9d52b534-d09e-4d9e-879f-a95d0b70b7c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.paragraphs_page.field_blocks
+    - node.type.paragraphs_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.paragraphs_page.default
+targetEntityType: node
+bundle: paragraphs_page
+mode: default
+content:
+  field_blocks:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  links: true
