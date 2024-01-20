@@ -1,0 +1,47 @@
+{%
+  set classes = [
+    paragraph.field_two_columns_news_spacing.value != "0" ? 'newsletter-spacing',
+    'two-columns-wrapper',
+    'paragraph-vertical-card-item',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% block paragraph %}
+  {% set background_color = paragraph.field_two_columns_bg_color.value %}
+  {% set background_image = file_url(paragraph.field_two_columns_bg_img.entity.uri.value) %}
+  {% set newsletter_spacing = paragraph.field_two_columns_news_spacing.value|number_format %}
+  {% set container_fluid = paragraph.field_two_columns_c_fluid.value|number_format %}
+  {% set horiz_align_left_side = paragraph.field_two_columns_horiz_align_ls.value %}
+  {% set vert_align_left_side = paragraph.field_two_columns_vert_align_ls.value %}
+  {% set horiz_align_right_side = paragraph.field_two_columns_horiz_align_rs.value %}
+  {% set vert_align_right_side = paragraph.field_two_columns_vert_align_rs.value %}
+  {% set invert_columns = paragraph.field_two_columns_invert_columns.value|number_format %}
+
+  <div{{ attributes.addClass(classes) }}
+  style="background: {{ background_image ? 'url(' ~ background_image ~ ')' : background_color }};background-size:cover;">
+    {% block content %}
+      <div class="container{{ container_fluid and '-fluid' }} two-columns-container">
+        <div class="row invert-columns-{{ invert_columns }} d-flex flex-row flex-wrap 
+          {% if invert_columns == 1 %} 
+            flex-column-reverse flex-lg-row-reverse 
+          {% else %} 
+            flex-column flex-lg-row 
+          {% endif %}
+          ">
+          <div class="col-left-side col-12 col-lg-6 {{ horiz_align_left_side }} {{ vert_align_left_side }}">
+            {{ content.field_left_body }}
+          </div>
+          <div class="col-right-side col-12 col-lg-6 {{ horiz_align_right_side }} {{ vert_align_right_side }}">
+            {{ content.field_right_body }}
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+
+  </div>
+
+{% endblock paragraph %}

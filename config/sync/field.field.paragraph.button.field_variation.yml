@@ -1,0 +1,23 @@
+uuid: 568321bd-eef6-493b-b6ed-516084dde8cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_variation
+    - paragraphs.paragraphs_type.button
+  module:
+    - options
+id: paragraph.button.field_variation
+field_name: field_variation
+entity_type: paragraph
+bundle: button
+label: Variation
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: primary
+default_value_callback: ''
+settings: {  }
+field_type: list_string

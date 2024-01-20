@@ -1,0 +1,48 @@
+uuid: e87477d4-c77d-4696-b09c-f046657bc904
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_variation
+field_name: field_variation
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: primary
+      label: primary
+    -
+      value: secondary
+      label: secondary
+    -
+      value: light
+      label: light
+    -
+      value: dark
+      label: dark
+    -
+      value: info
+      label: info
+    -
+      value: btn_success
+      label: success
+    -
+      value: btn_warning
+      label: warning
+    -
+      value: btn_danger
+      label: danger
+    -
+      value: link
+      label: link
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

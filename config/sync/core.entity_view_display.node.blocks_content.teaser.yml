@@ -1,0 +1,22 @@
+uuid: fc8a52ce-1978-4086-b2ff-c833a8135512
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.blocks_content.field_blocks_custom
+    - node.type.blocks_content
+  module:
+    - user
+id: node.blocks_content.teaser
+targetEntityType: node
+bundle: blocks_content
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_blocks_custom: true

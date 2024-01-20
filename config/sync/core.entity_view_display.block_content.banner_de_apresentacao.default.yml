@@ -1,0 +1,35 @@
+uuid: 3900ffbc-dbe4-4999-b2dc-ead6243c52f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.banner_de_apresentacao
+    - field.field.block_content.banner_de_apresentacao.field_background
+    - field.field.block_content.banner_de_apresentacao.field_body
+  module:
+    - image
+    - text
+id: block_content.banner_de_apresentacao.default
+targetEntityType: block_content
+bundle: banner_de_apresentacao
+mode: default
+content:
+  field_background:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

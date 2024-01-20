@@ -1,0 +1,23 @@
+uuid: fd695849-57f8-4cb9-af1d-0bbaac074201
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_is_outline
+    - paragraphs.paragraphs_type.button
+id: paragraph.button.field_is_outline
+field_name: field_is_outline
+entity_type: paragraph
+bundle: button
+label: 'Is Outline'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

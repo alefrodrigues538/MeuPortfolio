@@ -1,0 +1,31 @@
+uuid: 4f6c0704-644a-4871-885f-141577e1affa
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.banner_de_apresentacao
+    - block_content.type.basic
+    - field.storage.node.field_blocks_custom
+    - node.type.blocks_content
+id: node.blocks_content.field_blocks_custom
+field_name: field_blocks_custom
+entity_type: node
+bundle: blocks_content
+label: Blocks
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      banner_de_apresentacao: banner_de_apresentacao
+      basic: basic
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: banner_de_apresentacao
+field_type: entity_reference

@@ -1,3 +1,4 @@
+#  INTERNAL ROUTES
 api_gestao.add_price_gp:
   path: '/api_gestao/price/add'
   defaults:
@@ -13,3 +14,13 @@ api_gestao.add_product_gp:
     _title: 'Adicionar Produto'
   requirements:
     _permission: 'administer price gestao pessoal entities'
+ 
+
+#  REST EXPORT
+api_gestao.custom_rest_product_gp:
+  path: '/api/productgp/{id}'
+  defaults:
+    _controller: '\Drupal\api_gestao\Controller\CustomRestProductGPController::get'
+    _title: 'Custom Rest ProductGP'
+  requirements:
+    _permission: 'access content'

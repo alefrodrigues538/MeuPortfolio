@@ -1,0 +1,22 @@
+uuid: 76b4db5e-e9f9-450e-87b6-d53f368e1dbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - api_gestao
+    - basic_auth
+    - serialization
+id: entity.product_gp
+plugin_id: 'entity:product_gp'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PATCH
+  formats:
+    - json
+    - xml
+  authentication:
+    - basic_auth

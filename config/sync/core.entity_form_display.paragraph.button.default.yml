@@ -1,0 +1,58 @@
+uuid: d4f028e8-a86c-4577-b4a6-756beea93438
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.button.field_file_download
+    - field.field.paragraph.button.field_is_outline
+    - field.field.paragraph.button.field_title
+    - field.field.paragraph.button.field_url
+    - field.field.paragraph.button.field_variation
+    - paragraphs.paragraphs_type.button
+  module:
+    - file
+    - link
+id: paragraph.button.default
+targetEntityType: paragraph
+bundle: button
+mode: default
+content:
+  field_file_download:
+    type: file_generic
+    weight: 4
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_is_outline:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_url:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_variation:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

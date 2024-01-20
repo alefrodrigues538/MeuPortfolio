@@ -15,7 +15,6 @@ regions:
   page_top: 'Page top'   
   breadcrumb: Breadcrumb
   content: Content
-  sidebar_first: 'Sidebar first'
   footer_first: 'Footer first'
 
 # Information added by Drupal.org packaging script on 2023-09-26

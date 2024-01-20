@@ -1,0 +1,22 @@
+uuid: 8a31955d-9189-4498-9715-6a3265cd8769
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.contacts
+    - field.field.block_content.contacts.body
+  module:
+    - text
+id: block_content.contacts.default
+targetEntityType: block_content
+bundle: contacts
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

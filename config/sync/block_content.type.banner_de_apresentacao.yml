@@ -1,0 +1,8 @@
+uuid: 0c7d0b56-e125-4317-ad82-11411ec5ac57
+langcode: en
+status: true
+dependencies: {  }
+id: banner_de_apresentacao
+label: 'Banner de Apresentação'
+revision: 0
+description: ''

@@ -1,0 +1,4 @@
+services:
+  api_gestao.product_gp_service:
+    class: Drupal\api_gestao\Service\ProductGPService
+    arguments: ['@entity_type.manager', '@current_user']

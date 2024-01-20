@@ -1,0 +1,29 @@
+uuid: a4be85a6-e0e5-45cf-8647-d6873bafc488
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.blocks_content.field_blocks_custom
+    - node.type.blocks_content
+  module:
+    - user
+id: node.blocks_content.default
+targetEntityType: node
+bundle: blocks_content
+mode: default
+content:
+  field_blocks_custom:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

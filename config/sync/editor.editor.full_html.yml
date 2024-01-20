@@ -16,9 +16,13 @@ settings:
       - bold
       - italic
       - strikethrough
-      - superscript
-      - subscript
+      - underline
+      - fontColor
+      - fontBackgroundColor
+      - fontFamily
+      - fontSize
       - removeFormat
+      - alignment
       - '|'
       - link
       - '|'
@@ -31,54 +35,15 @@ settings:
       - horizontalLine
       - '|'
       - heading
-      - codeBlock
       - '|'
       - sourceEditing
   plugins:
-    ckeditor5_codeBlock:
-      languages:
-        -
-          label: 'Plain text'
-          language: plaintext
-        -
-          label: C
-          language: c
-        -
-          label: 'C#'
-          language: cs
-        -
-          label: C++
-          language: cpp
-        -
-          label: CSS
-          language: css
-        -
-          label: Diff
-          language: diff
-        -
-          label: HTML
-          language: html
-        -
-          label: Java
-          language: java
-        -
-          label: JavaScript
-          language: javascript
-        -
-          label: PHP
-          language: php
-        -
-          label: Python
-          language: python
-        -
-          label: Ruby
-          language: ruby
-        -
-          label: TypeScript
-          language: typescript
-        -
-          label: XML
-          language: xml
+    ckeditor5_alignment:
+      enabled_alignments:
+        - center
+        - justify
+        - left
+        - right
     ckeditor5_heading:
       enabled_headings:
         - heading2
@@ -89,10 +54,70 @@ settings:
     ckeditor5_imageResize:
       allow_resize: true
     ckeditor5_list:
-      reversed: true
-      startIndex: true
+      properties:
+        reversed: true
+        startIndex: true
+      multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags: {  }
+    ckeditor_font_font:
+      supportAllSizeValues: false
+      supportAllFamilyValues: true
+      font_names: {  }
+      font_sizes:
+        -
+          title: 14px
+          model: 14px
+        -
+          title: 16px
+          model: 16px
+        -
+          title: 18px
+          model: 18px
+        -
+          title: 20px
+          model: 20px
+        -
+          title: 24px
+          model: 24px
+        -
+          title: 28px
+          model: 28px
+        -
+          title: 32px
+          model: 32px
+        -
+          title: 36px
+          model: 36px
+        -
+          title: 42px
+          model: 42px
+        -
+          title: 46px
+          model: 46px
+        -
+          title: 50px
+          model: 50px
+        -
+          title: 64px
+          model: 64px
+        -
+          title: 72px
+          model: 72px
+        -
+          title: 84px
+          model: 84px
+        -
+          title: 100px
+          model: 100px
+    ckeditor_font_font_background_color:
+      font_backgroundcolors: "#FFF|Color\r\n#222|Color\r\n#000|Color\r\n#c3cae3|Color\r\n#a5c4c8|Color\r\n#8a94ac|Color\r\n#a2acbf|Color"
+      columns: 5
+      documentColors: 0
+    ckeditor_font_font_color:
+      font_colors: "#FFF|Color\r\n#222|Color\r\n#000|Color\r\n#c3cae3|Color\r\n#a5c4c8|Color\r\n#8a94ac|Color\r\n#a2acbf|Color"
+      columns: 5
+      documentColors: 0
 image_upload:
   status: true
   scheme: public

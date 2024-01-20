@@ -8,11 +8,11 @@ definitions:
     expanded: false
     enabled: true
   standard__front_page:
-    enabled: false
+    weight: -50
     menu_name: main
     parent: ''
+    enabled: false
     expanded: false
-    weight: 0
   admin_toolbar_tools__help:
     weight: 1
     menu_name: admin

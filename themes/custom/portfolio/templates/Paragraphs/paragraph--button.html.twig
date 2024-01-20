@@ -1,0 +1,35 @@
+{%
+  set classes = [
+    'button-wrapper',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% block paragraph %}
+  {% set title = paragraph.field_title.value %}
+  {% set variation = paragraph.field_variation.value %}
+  {% set isOutline = paragraph.field_is_outline.value %}
+  {% set url = paragraph.field_url.value %}
+  {% set downloadFile = file_url(paragraph.field_file_download.entity.uri.value) %}
+
+
+  <div{{ attributes.addClass(classes) }}>
+
+    {% block content %}
+
+    <a href="{{ url ? url : (downloadFile ? downloadFile : '') }}" 
+      {% if downloadFile %} download="Curriculo-Alef Fernando Rodrigues Dos Santos" {% endif %}
+      class="btn btn-{{ isOutline ? 'outline-' : '' }}{{ variation }}"
+    >
+        {{ title }}
+    </a>
+
+
+    {% endblock %}
+
+  </div>
+
+{% endblock paragraph %}

@@ -1,0 +1,66 @@
+uuid: 3623c082-c3e5-49aa-b501-91bea9dce04e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.button.field_file_download
+    - field.field.paragraph.button.field_is_outline
+    - field.field.paragraph.button.field_title
+    - field.field.paragraph.button.field_url
+    - field.field.paragraph.button.field_variation
+    - paragraphs.paragraphs_type.button
+  module:
+    - file
+    - link
+    - options
+id: paragraph.button.default
+targetEntityType: paragraph
+bundle: button
+mode: default
+content:
+  field_file_download:
+    type: file_default
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_is_outline:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_url:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_variation:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

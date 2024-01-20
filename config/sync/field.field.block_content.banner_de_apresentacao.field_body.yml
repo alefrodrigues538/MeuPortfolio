@@ -1,0 +1,24 @@
+uuid: 23cbafa3-104d-4699-bafa-53636a893974
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.banner_de_apresentacao
+    - field.storage.block_content.field_body
+    - filter.format.full_html
+  module:
+    - text
+id: block_content.banner_de_apresentacao.field_body
+field_name: field_body
+entity_type: block_content
+bundle: banner_de_apresentacao
+label: Body
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long
